@@ -1,0 +1,35 @@
+page-confirmacion-correo {
+    ion-content {
+        form {
+            .text-center {
+                text-align: center;
+            }
+            ion-grid {
+                ion-row {
+                    ion-col {
+                        ion-item {
+                            ion-input {
+								.text-input {
+									color: map-get($colors, dark);
+									text-align: center;
+								}
+							}
+                        }
+                        .text-center {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+            .mt-5 {
+				margin-top: 5%;
+			}
+			.text-center {
+				text-align: center;
+			}
+			.btn {
+				height: 40px;
+			}
+        }
+    }
+}

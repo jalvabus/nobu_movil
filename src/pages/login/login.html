@@ -1,0 +1,33 @@
+<ion-content padding>
+  <div class="logo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Escudo_del_H._Cuerpo_de_Bomberos_CDMX.png/250px-Escudo_del_H._Cuerpo_de_Bomberos_CDMX.png"
+      alt="Logo">
+  </div>
+  <ion-list inset>
+    <form [formGroup]='form'>
+      <ion-item>
+        <ion-input type="email" placeholder="Usuario" name="usuario" id="usuario" [(ngModel)]="form.usuario"
+          formControlName='usuario'></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-input type="password" placeholder="Contraseña" name="password" id="password" [(ngModel)]="form.password"
+          formControlName='password'></ion-input>
+      </ion-item>
+      <br>
+    </form>
+
+    <div class="">
+      <ion-checkbox color="danger" checked="true"></ion-checkbox> <span style="font-size: 18px; margin-left: 6%; "> Recordar</span>
+    </div>
+
+    <div class="mt-5 text-center">
+      <button class="btn" ion-button color="danger" block [disabled]='form.invalid' (click)="doLogin()">Iniciar sesión</button>
+    </div>
+
+    <div class="mt-5 text-center">
+      <a (click)="registro()">Si no tienes cuenta, Registrate aqui</a>
+    </div>
+
+  </ion-list>
+</ion-content>

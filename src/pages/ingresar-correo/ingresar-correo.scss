@@ -1,0 +1,39 @@
+page-ingresar-correo {
+    ion-content {
+        ion-list {
+            form {
+                ion-item {
+					background-color: map-get($colors, claro) !important;
+					border: 1px solid map-get($colors, claro) !important;
+					border-radius: 3px;
+					margin-bottom: 20px;
+					&.item-block {
+						.item-inner {
+							border-bottom: 0;
+							box-shadow: none !important;
+							ion-input {
+								.text-input {
+									color: map-get($colors, dark);
+									text-align: center;
+								}
+							}
+							::-webkit-input-placeholder {
+								  color: map-get($colors, claro);
+								  text-align: center;
+							}
+						}
+					}
+				}
+				.mt-5 {
+					margin-top: 5%;
+				}
+				.text-center {
+					text-align: center;
+				}
+				.btn {
+					height: 40px;
+				}
+            }
+        }
+    }
+}

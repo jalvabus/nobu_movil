@@ -1,0 +1,44 @@
+page-boton-panico {
+    ion-menu {
+        ion-header {
+            ion-content {
+                ion-item {
+                    ion-avatar {
+                        .img {
+                            width: 40%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ion-header {
+        ion-navbar {
+            background-color: map-get($colors, claro);
+        }
+    }
+    ion-content {
+        padding-top: 30%;
+        background-color: map-get($colors, claro);
+		.logo {
+            padding-top: 5%;
+            padding-bottom: 5%;
+			display: inline-block;
+			margin: 0 auto;
+			text-align: center;
+			width: 100%;
+        }
+        h1 {
+            color: red;
+            font-size: 40px;
+            font-family: "Gill Sans", sans-serif;
+            font-weight: 900;
+        }
+        h3 {
+            padding-top: 5%;
+            font-size: 24px;
+            font-family: "Gill Sans", sans-serif;
+            font-weight: normal;
+        }
+    }
+}
