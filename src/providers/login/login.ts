@@ -17,4 +17,26 @@ export class LoginProvider {
     console.log('Hello LoginProvider Provider');
   }
 
+  doLogin(datos) {
+    return new Promise((resolve, reject) => {
+      this.http.post(CONFIG.API_LOGIN + 'loginUsuario', datos)
+        .subscribe((token) => {
+          resolve(this.saveToken(token.json()));
+        }, (err) => {
+          reject(err);
+        })
+    })
+  }
+
+  saveToken(token) {
+    window.localStorage.setItem('token', token);
+    this.http.post(CONFIG.API + 'usuario/fetchUsuario', {token: token}, sendToken())
+      .subscribe((usuario) => {
+        window.localStorage.setItem('usuario',
+          JSON.stringify(usuario.json()));
+      },
+      (err) => { console.log(err) })
+    return token;
+  }
+
 }

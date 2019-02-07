@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { Socket } from 'ng-socket-io';
+import { UsuarioProvider } from '../../providers/index.providers';
 
 /**
  * Generated class for the BotonPanicoPage page.
@@ -19,39 +20,45 @@ import { Socket } from 'ng-socket-io';
 })
 export class BotonPanicoPage {
 
+  usuario: any = {};
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private geolocation: Geolocation,
     public alertCtrl: AlertController,
-    private socket: Socket
+    private socket: Socket,
+    public usuarioProvider: UsuarioProvider
   ) {
+
+    this.usuarioProvider.getUsuario()
+      .then((usuario: any) => {
+        this.usuario = usuario;
+      })
   }
 
   enviarCoordenadas() {
     console.log("Alerta enviada");
 
-    this.showAlert();
+
     this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
+
       this.socket.connect();
-      this.socket.emit('alerta', { latitud: resp.coords.latitude, longitud: resp.coords.longitude });
+      let datos = {
+        latitud: resp.coords.latitude,
+        longitud: resp.coords.longitude,
+        usuario: this.usuario._id
+      }
+      this.usuarioProvider.enviarAlerta(datos)
+        .then((response: any) => {
+          this.showAlert();
+        })
+      // this.socket.emit('alerta', { latitud: resp.coords.latitude, longitud: resp.coords.longitude });
 
       console.log(resp);
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-
-    /*
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data) => {
-      console.log(data);
-      // data can be a set of coordinates, or an error (if an error occurred).
-      // data.coords.latitude
-      // data.coords.longitude
-    });
-*/
   }
 
   ayuda() {
@@ -60,7 +67,7 @@ export class BotonPanicoPage {
   showAlert() {
     const alert = this.alertCtrl.create({
       title: 'Alerta Enviada!',
-      subTitle: 'Tu alerta a sidoenviada espera por la ayuda!',
+      subTitle: 'Tu alerta a sido enviada espera por la ayuda!',
       buttons: ['OK']
     });
     alert.present();

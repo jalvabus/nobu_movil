@@ -1,4 +1,7 @@
 export default  {    
-    API: "http://localhost:16041/api/",    
-    version: "1.0.0"    
+    API: "http://207.38.94.126:16041/api/",    
+    API_LOGIN: "http://207.38.94.126:16041/",
+    version: "1.0.0",
+    //API: "http://localhost:16041/api/",    
+    //API_LOGIN: "http://localhost:16041/",
 }

@@ -24,28 +24,28 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="number" (keyup)="processKeyUp2()"></ion-input>
+            <ion-input type="number" name="numero1" (keyup)="processKeyUp2()" [(ngModel)]="numero1"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
-            <ion-input #number2 (keyup)="processKeyUp3()" type="number"></ion-input>
+            <ion-input #number2  name="numero2" (keyup)="processKeyUp3()" type="number" [(ngModel)]="numero2"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
-            <ion-input #number3 (keyup)="processKeyUp4()" type="number"></ion-input>
+            <ion-input #number3  name="numero3" (keyup)="processKeyUp4()" type="number" [(ngModel)]="numero3"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
-            <ion-input #number4 type="number"></ion-input>
+            <ion-input #number4  name="numero4" type="number" [(ngModel)]="numero4"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
     <div class="mt-5 text-center">
-      <button class="btn" ion-button color="secondary" block (click)="confirmarCodigo()">Confirmar</button>
+      <button class="btn" [disabled]="!numero1 || !numero2 || !numero3 || !numero4" ion-button color="secondary" block (click)="confirmarCodigo()">Confirmar</button>
     </div>
   </form>
 </ion-content>

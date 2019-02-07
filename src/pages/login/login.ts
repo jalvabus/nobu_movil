@@ -31,6 +31,12 @@ export class LoginPage {
     public loginProvider: LoginProvider,
     public usuarioProvider: UsuarioProvider
   ) {
+    let token = window.localStorage.getItem('token');
+
+    if (token) {
+      this.navCtrl.setRoot(InicioPage);
+    }
+
     this.form = this.formBuilder.group({
       usuario: ['', Validators.required],
       password: ['', Validators.required]
@@ -43,42 +49,29 @@ export class LoginPage {
       content: "Iniciando sesión...",
       duration: 3000
     });
-
-    
     loader.present();
 
-    loader.dismiss();
-
-    this.navCtrl.setRoot(InicioPage);
-    /*
     this.loginProvider.doLogin(this.form.value)
       .then((token) => {
-
         this.usuarioProvider.getUsuario()
           .then((usuario: any) => {
-            if (usuario.rol == 'SA') {
-              this.navCtrl.setRoot("ContenedorSaPage");
+            if (usuario.codigo.entregado) {
+              loader.dismiss();
+              this.navCtrl.setRoot(InicioPage);
+            } else {
+              loader.dismiss();
+              let alert = this.alertCtrl.create({
+                title: 'Error al inciar sesión',
+                subTitle: 'Debe verificar el codigo enviado al correo: ' + usuario.email,
+                buttons: ['Aceptar']
+              });
+              alert.present();
             }
-            else if (usuario.rol == 'A') {
-              this.navCtrl.setRoot("ContenedorAPage");
-            }
-            else if (usuario.rol == 'C') {
-              this.navCtrl.setRoot("ContenedorCPage");
-            }
-            else if (usuario.rol == 'S') {
-              this.navCtrl.setRoot("ContenedorSPage");
-            }
-            else if (usuario.rol == 'M') {
-              this.navCtrl.setRoot("ContenedorMPage");
-            }else if(usuario.rol=='SAE'){
-              this.navCtrl.setRoot("ContenedorSaePage");
-             }
           })
           .catch((err) => {
             console.log(err);
           })
 
-        loader.dismiss();
       })
       .catch((err) => {
         loader.dismiss();
@@ -89,7 +82,7 @@ export class LoginPage {
         });
         alert.present();
       })
-      */
+
   }
 
   registro() {

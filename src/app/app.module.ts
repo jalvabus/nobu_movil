@@ -11,8 +11,8 @@ import { MyApp } from './app.component';
 /**
  * Socket .io
  */
-import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
-const config: SocketIoConfig = { url: 'http://207.38.94.126:25808', options: {} };
+//import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+//const config: SocketIoConfig = { url: 'http://207.38.94.126:25808', options: {} };
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -47,8 +47,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     BrowserModule,
     HttpModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
-    SocketIoModule.forRoot(config)
+    IonicModule.forRoot(MyApp)
+    //SocketIoModule.forRoot(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

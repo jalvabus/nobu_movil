@@ -19,5 +19,35 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Uusario: {{ usuario.email }}
+    </ion-card-header>
+  </ion-card>
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let alerta of alertas">
+      <ion-item *ngIf="alerta.visto">
+        {{ alerta.fecha | date: 'dd/MM/yyyy' }}
+        ATENIDIDA
+      </ion-item>
+      <ion-item *ngIf="!alerta.visto">
+        {{ alerta.fecha | date: 'dd/MM/yyyy' }}
+        NO ATENDIDA
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+          <ion-icon name="text"></ion-icon>
+          Falsa Alarma
+        </button>
+      </ion-item-options>
+
+      <ion-item-options side="left">
+        <button ion-button>
+          <ion-icon name="text"></ion-icon>
+          Detalles
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>

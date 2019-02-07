@@ -8,6 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 import { LoginPage, BotonPanicoPage, HistorialPage, PerfilPage } from '../index.pages';
+import { UsuarioProvider } from '../../providers/index.providers';
 
 @IonicPage()
 @Component({
@@ -17,8 +18,17 @@ import { LoginPage, BotonPanicoPage, HistorialPage, PerfilPage } from '../index.
 export class InicioPage {
 
   rootPage: any = BotonPanicoPage;
+  usuario: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public usuarioProvider: UsuarioProvider
+  ) {
+    this.usuarioProvider.getUsuario()
+    .then((usuario: any)=> {
+      this.usuario = usuario;
+    })
   }
 
   openInicio() {
@@ -30,6 +40,7 @@ export class InicioPage {
   }
 
   cerrarSesion() {
+    window.localStorage.clear();
     this.navCtrl.setRoot(LoginPage)
   }
 
