@@ -16,20 +16,15 @@
       <div class="img">
         <img style="width: 50%;" src="assets/logo.png">
       </div>
-      <h2>{{ usuario.email }}</h2>
       <p>Ciudadano</p>
     </ion-item>
     <ion-list>
-      <button ion-item menuClose menuClose (click)="openInicio()">
-        Inicio
-      </button>
-      <button ion-item menuClose (click)="openHistoral()">
-        Historial
-      </button>
-      <button ion-item menuClose (click)="openPerfil()">
-        Perfil
+      <button menuClose ion-item *ngFor="let p of pages" [class.active-menu]="menuActive(p)" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}" item-left></ion-icon>
+        {{p.title}}
       </button>
       <button ion-item menuClose (click)="cerrarSesion()">
+        <ion-icon name="log-out" item-left></ion-icon>
         Cerrar Sesion
       </button>
     </ion-list>

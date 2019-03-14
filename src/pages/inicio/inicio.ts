@@ -18,25 +18,37 @@ import { UsuarioProvider } from '../../providers/index.providers';
 export class InicioPage {
 
   rootPage: any = BotonPanicoPage;
-  usuario: any = {};
+  usuario: any = {
+    email: 'email@email.com'
+  };
+
+  pages: Array<{ title: string, component: any, icon: string }>;
+  activePage: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public usuarioProvider: UsuarioProvider
   ) {
-    this.usuarioProvider.getUsuario()
-    .then((usuario: any)=> {
-      this.usuario = usuario;
-    })
+    this.usuario = JSON.parse(window.localStorage.getItem('usuario'));
+
+    this.pages = [
+      { title: 'Inicio', component: BotonPanicoPage, icon: 'home' },
+      { title: 'Historial', component: HistorialPage, icon: 'list-box' },
+      { title: 'Perfil', component: PerfilPage, icon: 'contact' },
+    ];
+
+    this.activePage = this.pages[0];
+
   }
 
-  openInicio() {
-    this.rootPage = BotonPanicoPage;
+  openPage(page) {
+    this.rootPage = page.component;
+    this.activePage = page;
   }
 
-  openHistoral() {
-    this.rootPage = HistorialPage;
+  menuActive(page) {
+    return page == this.activePage;
   }
 
   cerrarSesion() {

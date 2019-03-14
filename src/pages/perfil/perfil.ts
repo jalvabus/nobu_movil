@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormBuilder, Validators } from '@angular/forms';
 
 /**
  * Generated class for the PerfilPage page.
@@ -15,9 +16,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfilPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  form: any = {};
+
+  constructor(
+    public formBuilder: FormBuilder,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+    this.form = this.formBuilder.group({
+      usuario: ['', Validators.required],
+      passwordOld: ['', Validators.required],
+      passwordNew: ['', Validators.required]
+    });
   }
 
+  update() {
+
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad PerfilPage');
   }

@@ -24,7 +24,9 @@ import {
   BotonPanicoPage,
   HistorialPage,
   InicioPage,
-  PerfilPage
+  PerfilPage,
+  ConfirmarPosicionPage,
+  HistorialDetallesPage
 } from '../pages/index.pages';
 
 import { LoginProvider } from '../providers/login/login';
@@ -41,7 +43,9 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     BotonPanicoPage,
     HistorialPage,
     InicioPage,
-    PerfilPage
+    PerfilPage,
+    ConfirmarPosicionPage,
+    HistorialDetallesPage
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,9 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     BotonPanicoPage,
     HistorialPage,
     InicioPage,
-    PerfilPage
+    PerfilPage,
+    ConfirmarPosicionPage,
+    HistorialDetallesPage
   ],
   providers: [
     StatusBar,

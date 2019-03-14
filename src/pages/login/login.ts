@@ -74,10 +74,11 @@ export class LoginPage {
 
       })
       .catch((err) => {
+        var response = JSON.parse(err._body);
         loader.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Error al inciar sesión',
-          subTitle: 'No existe el usuario',
+          subTitle: response.code,
           buttons: ['Aceptar']
         });
         alert.present();

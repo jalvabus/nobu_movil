@@ -9,7 +9,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  */
 
 import { UsuarioProvider } from '../../providers/index.providers';
-
+import { HistorialDetallesPage } from '../index.pages';
 @IonicPage()
 @Component({
   selector: 'page-historial',
@@ -18,23 +18,27 @@ import { UsuarioProvider } from '../../providers/index.providers';
 export class HistorialPage {
 
   alertas: any = [];
-  usuario: any= {};
+  usuario: any = {};
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public usuarioProvider: UsuarioProvider
-    ) {
-      this.usuario = JSON.parse(window.localStorage.getItem('usuario'));
-      this.getAlertas();
+  ) {
+    this.usuario = JSON.parse(window.localStorage.getItem('usuario'));
+    this.getAlertas();
   }
 
   getAlertas() {
     this.usuarioProvider.obtenerNotificaciones(this.usuario._id)
-    .then((alertas)=>{
-      console.log(alertas);
-      this.alertas = alertas;
-    })
+      .then((alertas) => {
+        console.log(alertas);
+        this.alertas = alertas;
+      })
+  }
+
+  detallesAlerta(alerta: any) {
+    this.navCtrl.push(HistorialDetallesPage, { alerta: alerta });
   }
 
   ionViewDidLoad() {

@@ -18,5 +18,25 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]='form'>
+    <ion-list>
+      <h4 style="text-align: center;">Actualizar Datos</h4>
+      <ion-item>
+        <ion-input type="email" placeholder="Usuario" name="usuario" id="usuario" [(ngModel)]="form.usuario"
+          formControlName='usuario'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Contraseña Actual" name="passwordOld" id="passwordOld" [(ngModel)]="form.passwordOld"
+          formControlName='passwordOld'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Contraseña Nueva" name="passwordNew" id="passwordNew" [(ngModel)]="form.passwordNew"
+          formControlName='passwordNew'></ion-input>
+      </ion-item>
+
+      <button class="btn" ion-button color="danger" block [disabled]='form.invalid' (click)="update()">Actualizar Datos</button>
+
+    </ion-list>
+  </form>
 
 </ion-content>

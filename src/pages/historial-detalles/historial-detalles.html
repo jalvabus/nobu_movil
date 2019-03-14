@@ -1,0 +1,40 @@
+<!--
+  Generated template for the HistorialDetallesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detalles de la Alerta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <h5>Usuario:</h5>
+    <ion-item>
+      <ion-input type="text" value="{{ usuario.email }}" disabled></ion-input>
+    </ion-item>
+
+    <h5>Fecha:</h5>
+    <ion-item>
+      <ion-input type="text" value="{{ alerta.fecha | date : 'dd/MM/yyyy hh:mm' }}" disabled></ion-input>
+    </ion-item>
+
+    <div *ngIf="alerta.visto">
+      <h5>Atendido Por:</h5>
+      <ion-item>
+        <ion-input type="text" value="{{ alerta.vulcano }}" disabled></ion-input>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <h5>Ubicacion:</h5>
+  <div #gmap id="gmap" style=""></div>
+
+</ion-content>

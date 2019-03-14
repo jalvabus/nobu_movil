@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { Geolocation } from '@ionic-native/geolocation';
+// import { Geolocation } from '@ionic-native/geolocation';
 
-import { Socket } from 'ng-socket-io';
+// import { Socket } from 'ng-socket-io';
 import { UsuarioProvider } from '../../providers/index.providers';
+import { ConfirmarPosicionPage } from '../index.pages';
 
 /**
  * Generated class for the BotonPanicoPage page.
@@ -25,9 +26,9 @@ export class BotonPanicoPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private geolocation: Geolocation,
+    //private geolocation: Geolocation,
     public alertCtrl: AlertController,
-    private socket: Socket,
+    //private socket: Socket,
     public usuarioProvider: UsuarioProvider
   ) {
 
@@ -38,12 +39,13 @@ export class BotonPanicoPage {
   }
 
   enviarCoordenadas() {
-    console.log("Alerta enviada");
-
+    this.navCtrl.push(ConfirmarPosicionPage);
+    /*
+    console.log("Alerta enviada")
 
     this.geolocation.getCurrentPosition().then((resp) => {
 
-      this.socket.connect();
+      //this.socket.connect();
       let datos = {
         latitud: resp.coords.latitude,
         longitud: resp.coords.longitude,
@@ -52,18 +54,16 @@ export class BotonPanicoPage {
       this.usuarioProvider.enviarAlerta(datos)
         .then((response: any) => {
           this.showAlert();
-        })
+        })  
       // this.socket.emit('alerta', { latitud: resp.coords.latitude, longitud: resp.coords.longitude });
 
       console.log(resp);
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+    */
   }
 
-  ayuda() {
-    console.log("Hola");
-  }
   showAlert() {
     const alert = this.alertCtrl.create({
       title: 'Alerta Enviada!',
